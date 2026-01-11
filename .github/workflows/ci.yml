@@ -42,7 +42,7 @@ jobs:
       - name: Build Web App
         run: |
           cd packages/web
-          dx build --release
+          dx build --release --base-path /pli_dxliter/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
