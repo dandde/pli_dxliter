@@ -1,0 +1,13 @@
+[package]
+name = "web"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = { workspace = true, features = ["web", "router", "document"] }
+ui = { workspace = true, features = ["web"] }
+vidyut-lipi = { workspace = true }
+
+[features]
+default = ["web"]
+web = ["dioxus/web"]
