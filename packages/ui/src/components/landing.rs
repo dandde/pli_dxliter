@@ -22,7 +22,14 @@ pub fn Landing() -> Element {
             div { class: "features-grid",
                 div { class: "feature-card",
                     h3 { "Vidyut Powered" }
-                    p { "Uses the robust vidyut-lipi library for accurate transliteration." }
+                    p {
+                        "Uses the robust "
+                        a {
+                            href: "https://docs.rs/vidyut-lipi/latest/vidyut_lipi/",
+                            "vidyut-lipi"
+                        }
+                        " library for accurate transliteration."
+                    }
                 }
                 div { class: "feature-card",
                     h3 { "Multi-Script" }

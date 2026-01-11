@@ -1,0 +1,60 @@
+name: Desktop Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-desktop:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+            extension: .exe
+          - os: ubuntu-latest
+            platform: linux
+            extension: ""
+          - os: macos-latest
+            platform: macos
+            extension: .app
+
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      
+    - name: Install dependencies (Ubuntu only)
+      if: matrix.platform == 'linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libwebkit2gtk-4.0-dev \
+        build-essential \
+        curl \
+        wget \
+        file \
+        libssl-dev \
+        libgtk-3-dev \
+        libayatana-appindicator3-dev \
+        librsvg2-dev
+        
+    - name: Install Dioxus CLI
+      run: cargo install dioxus-cli
+
+    - name: Build Desktop App
+      run: |
+        cd packages/desktop
+        dx build --platform desktop --release
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: desktop-${{ matrix.platform }}
+        path: |
+          packages/desktop/dist/bundle/
+          target/dx/desktop/release/${{ matrix.platform }}/

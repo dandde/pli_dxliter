@@ -1,0 +1,11 @@
+[application]
+name = "pli_dxliter"
+default_platform = "desktop"
+out_dir = "dist"
+
+[desktop.app]
+name = "pli_dxliter"
+version = "0.1.0"
+identifier = "com.dandde_pli_dxliter"
+author = "Dandde"
+category = "Education"
