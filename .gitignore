@@ -7,3 +7,5 @@
 **/*.rs.bk
 ./assets
 ./AGENTS.md
+.vercel
+.env*.local
