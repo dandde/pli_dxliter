@@ -9,3 +9,7 @@ version = "0.1.0"
 identifier = "com.dandde_pli_dxliter"
 author = "Dandde"
 category = "Education"
+
+[bundle]
+identifier = "com.dandde.pli_dxliter"
+icon = ["assets/icon.icns"]
